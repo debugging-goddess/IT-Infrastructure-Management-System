@@ -1,0 +1,54 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+.venv/
+venv/
+env/
+*.sqlite3
+*.log
+staticfiles/
+media/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment and secrets: only .env.example is committed
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+
+# Database dumps and backups
+*.sql
+*.dump
+*.sql.gz
+backups/
+
+# Node / React
+node_modules/
+frontend/dist/
+frontend/build/
+*.local
+*.tsbuildinfo
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Docker
+*.env.local

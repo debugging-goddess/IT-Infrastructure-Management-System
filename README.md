@@ -109,7 +109,7 @@ Sign in with the **email** and password you created in step 4.
 
 | Port | Used by |
 |---|---|
-| 3001 | Frontend. 3001 rather than 3000 to avoid clashing with tools like Grafana |
+| 3001 | Frontend |
 | 8000 | Backend API |
 | 80 | Nginx, serving the app and API from one address |
 | 5433 | PostgreSQL, for database tools on this machine only (set `DB_HOST_PORT` in `.env` to change it) |
@@ -121,7 +121,6 @@ docker compose exec backend python manage.py test tests
 docker compose exec frontend npx tsc --noEmit
 ```
 
-The same checks, plus a production build of the frontend, run on every push through GitHub Actions (`.github/workflows/ci.yml`).
 
 ## Project Structure
 
@@ -150,7 +149,6 @@ The same checks, plus a production build of the frontend, run on every push thro
 └── docker-compose.yml
 ```
 
-See [docs/data-model.md](docs/data-model.md) for the entities, relationships and who is allowed to do what.
 
 ## Development Notes
 
@@ -164,19 +162,5 @@ See [docs/data-model.md](docs/data-model.md) for the entities, relationships and
 - Secrets live only in `.env`, which is git-ignored. `.env.example` is the template.
 - `DJANGO_DEBUG` defaults to off. With debug off, the app refuses to start without a strong `DJANGO_SECRET_KEY`.
 
-### Before deploying anywhere real
 
-This setup is for development: it runs the Vite dev server and gunicorn with auto-reload. For a real deployment, also:
-- set `DJANGO_DEBUG=False` and your real hostnames in `DJANGO_ALLOWED_HOSTS` and `CORS_ALLOWED_ORIGINS`
-- serve the site over HTTPS and set `DJANGO_HTTPS=True`
-- build the frontend (`npm run build`) and serve the static files rather than running the dev server
-- back up the `postgres_data` and `media_data` Docker volumes
-
-## Roadmap
-
-- Screens for the API-only features above
-- CSV import and export
-- Global search across all resources
-- Notifications for status changes
-- Production Docker setup
 
